@@ -13,7 +13,11 @@ module Babilu
   end
 
   def self.translations
-    I18n.all_translations
+    final = {}
+    I18n.all_translations.keys.each do |lang|
+      final[lang] = I18n.all_translations[lang][:js]
+    end
+    final
   end
 
   def self.default_locale
