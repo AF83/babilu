@@ -25,6 +25,9 @@ I18n.t('doesntexist', {defaultValue:'humbaba'}) // "humbaba"
 I18n.t('doesntexist', {defaultValue:':hello'}) // "Hello world"
 I18n.t('doesntexist', {defaultValue:[':alsodoesntexist', 'The Sasqutch: Fact or Fiction?']}) // "The Sasquatch: Fact or Fiction?"
 
+For obvious privacy/security/performance reasons, the whole I18n keys hierarchy
+is not taken into account: only the js.* keys will be loaded.
+
 This plugin depends on http://github.com/toretore/lucy
 
 
