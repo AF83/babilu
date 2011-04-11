@@ -10,10 +10,10 @@ translations = {
       one: 'pony',
       other: 'ponies'
     },
-    welcome: 'Welcome, {{name}}!',
+    welcome: 'Welcome, %{name}!',
     forest_howto: {
-      one: 'Go north {{count}} league until you see the tall cedars',
-      other: 'Go north {{count}} leagues until you see the tall cedars'
+      one: 'Go north %{count} league until you see the tall cedars',
+      other: 'Go north %{count} leagues until you see the tall cedars'
     }
   },
   no: {
@@ -88,6 +88,7 @@ describe('I18n.pluralize', {
 
   'should return value.other when count is not 1': function(){
     expect(I18n.pluralize(translations.en.pony, 3)).should_be('ponies');
+    expect(I18n.pluralize(translations.en.pony, 0)).should_be('ponies');
   }
 
 });
@@ -139,14 +140,16 @@ describe('I18n.translate', {
   'should pluralize when the count option is given': function(){
     expect(I18n.t('pony', {count:1})).should_be('pony');
     expect(I18n.t('pony', {count:3})).should_be('ponies');
+    expect(I18n.t('pony', {count:0})).should_be('ponies');
   },
 
-  'should interpolate values inside {{ and }} in the translation string if a value is given in the options': function(){
+  'should interpolate values inside %{ and } in the translation string if a value is given in the options': function(){
     expect(I18n.t('welcome', {name:'Enkidu'})).should_be('Welcome, Enkidu!');
   },
 
-  'should interpolate {{count}} as well as pluralize it': function(){
+  'should interpolate %{count} as well as pluralize it': function(){
     expect(I18n.t('forest_howto', {count:1000})).should_be('Go north 1000 leagues until you see the tall cedars');
+    expect(I18n.t('forest_howto', {count:0})).should_be('Go north 0 leagues until you see the tall cedars');
   }
 
 });
